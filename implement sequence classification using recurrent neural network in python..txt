@@ -1,6 +1,4 @@
-Aim:
-To write a program to implement sequence classification using recurrent neural network in python.
-Program:
+
 # Importing the libraries
 import pandas as pd
 import pandas as pd
@@ -77,10 +75,3 @@ gr.fit(x_train,y_train, epochs = 10, validation_split = 0.3)
 y_pred = np.argmax(gr.predict(x_test), axis = 1)
 #y_test = np.argmax(y_test,axis = 1)
 print(accuracy_score(y_pred, y_test))
-Output:
-#Simple RNN accuracy
-#LSTM accuracy
-#GRU accuracy
-Result:
-Thus, sequence classification program was implemented using recurrent neural network
-and executed successfully
