@@ -1,0 +1,16 @@
+# Importing the libraries
+import cv2
+import matplotlib.pyplot as plt
+#loading the image
+img = cv2.imread('/content/drive/MyDrive/Deep learning/Images/chess.jpg')
+plt.imshow(img)
+#converting the image color
+gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+plt.imshow(gray)
+#Harris corner detection
+dst = cv2.cornerHarris(gray,2,3,0,.4)
+dst = cv2.dilate(dst,None)
+plt.imshow(dst)
+img[dst>0.01*dst.max()] = [255,0,0]
+plt.figure(figsize=(10,10))
+plt.imshow(img)
