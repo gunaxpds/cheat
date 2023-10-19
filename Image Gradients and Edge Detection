@@ -1,0 +1,28 @@
+# Importing the libraries
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+#Loading the Image
+image1 = cv2.imread('/content/Anchor.jpg')
+image = cv2.cvtColor(image1,cv2.COLOR_BGR2GRAY)
+# Importing the libraries
+lap = cv2.Laplacian(image,cv2.CV_64F)
+lap = np.uint8(np.absolute(lap))
+plt.imshow(lap)
+lm = cv2.cvtColor(image1,cv2.COLOR_BGRA2GRAY)
+plt.imshow(lm)
+sobelx = cv2.Sobel(image1,cv2.CV_64F,1,0)
+sobely = cv2.Sobel(image1,cv2.CV_64F,0,1)
+sobelx = np.uint8(np.absolute(sobelx))
+sobely = np.uint8(np.absolute(sobely))
+Sobelcombinbed = cv2.bitwise_or(sobelx,sobely)
+plt.imshow(sobelx)
+plt.imshow(sobely)
+img=cv2.imread('/content/Anchor.jpg')
+edges=cv2.Canny(img,100,200)
+plt.imshow(img)
+plt.title('original')
+plt.show()
+plt.imshow(edges)
+plt.title('Canny Edge Detection')
+plt.show()
