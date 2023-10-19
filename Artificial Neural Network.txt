@@ -1,0 +1,107 @@
+Artificial Neural Network
+Aim:
+To write a program to implement classification and regression using Artificial Neural
+Networks in python.
+Program:
+Classification:
+#Importing the libraries
+import numpy as np
+import pandas as pd
+#Importing the data
+data = pd.read_csv('/content/drive/MyDrive/Dataset/healthcare-dataset-stroke-data.csv')
+data.head()
+data=data.dropna()
+data.columns
+df=data[['age','hypertension','heart_disease','avg_glucose_level','bmi','stroke']]
+df.head()
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df['gender'] = le.fit_transform(data['gender'])
+df['ever_married'] = le.fit_transform(data['ever_married'])
+df['work_type'] = le.fit_transform(data['work_type'])
+df['Residence_type'] = le.fit_transform(data['Residence_type'])
+df['smoking_status'] = le.fit_transform(data['smoking_status'])
+df.head()
+data.shape
+df.shape
+x = df.drop('stroke',axis=1)
+y = df['stroke']
+x.shape
+y.shape
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.countplot(df,x='stroke')
+plt.xticks([0,1],['NO','YES'])
+plt.title('COUNT PLOT')
+from sklearn.model_selection import train_test_split as tts
+x_train, x_test, y_train, y_test= tts(x,y,test_size=0.2)
+#Model Creation and compilation
+import tensorflow as tf
+from tensorflow.keras.layers import Dense
+ann = tf.keras.Sequential()
+ann.add(Dense(units=25, activation='relu'))
+ann.add(Dense(units=25,activation='relu'))
+ann.add(Dense(units=1,activation='sigmoid'))
+ann.compile('adam','binary_crossentropy',metrics=['accuracy'])
+result = ann.fit(x_train,y_train,epochs=10)
+y_pred=[]
+for i in ann.predict(x_test):
+ if i>0.5:
+ y_pred.append(1)
+ if i<0.5:
+ y_pred.append(0)
+from sklearn.metrics import confusion_matrix
+confusion_matrix(y_test,y_pred)
+from sklearn.metrics import accuracy_score
+accuracy=accuracy_score(y_test,y_pred)
+accuracy
+Regression:
+#Importing the necessary libraries
+import pandas as pd
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.layers import Dense
+from tensorflow.keras import Sequential
+#Importing the data
+df = pd.read_csv('/content/drive/MyDrive/Dataset/CarPrice_Assignment (1).csv')
+df
+df.columns
+df = pd.get_dummies(df)
+df.head()
+x = df.drop(['price'],axis=1)
+y = df.price
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.3)
+x_train.shape
+#r2
+from keras import backend as k
+def r2(y_true,y_pred):
+ ss_res = k.sum(k.square(y_true-y_pred))
+ ss_tot = k.sum(k.square(y_true-k.mean(y_true)))
+ return (1-ss_res/(ss_tot))
+#Model creation and compilation
+model = Sequential()
+model.add(Dense(400,activation='relu',input_dim=198))
+model.add(Dense(240,activation='relu'))
+model.add(Dense(1))
+model.compile(optimizer='Adam',loss='mean_absolute_error',metrics=[r2])
+hist = model.fit(x_train,y_train,epochs=150, batch_size=5, validation_split=0.3)
+pd.DataFrame(model.history.history).reset_index().plot('index',kind='line')
+pd.DataFrame(model.history.history)[['r2','val_r2']].reset_index().plot('index', kind='line')
+data = pd.DataFrame(hist.history)
+data.loc[data['r2'].idxmax()]
+Output:
+Classification:
+#Count plot of y
+#Confusion matrix
+array([[935, 4],
+ [ 43, 0]])
+#Accuracy:
+0.9521384928716904
+Regression:
+#Model history
+#r2 vs val_r2
+#Max r2 details
+Result:
+Thus, classification and regression was implemented using Artificial Neural Networks in
+python and executed successfully.
