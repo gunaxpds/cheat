@@ -1,0 +1,41 @@
+#Importing the necessary libraries
+import cv2
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+# Geometric Transformations of Images
+# Scaling
+img = cv2.imread('/content/morph_dilate.png')
+height, width = img.shape[:2]
+res = cv2.resize(img,(2*width, 5*height), interpolation = cv2.INTER_NEAREST)
+plt.imshow(img)
+print(res.shape)
+plt.imshow(res)
+# Translation
+img = cv2.imread('/content/morph_dilate.png',0)
+rows,cols = img.shape
+M = np.float32([[1,0,500],[0,1,400]])
+dst = cv2.warpAffine(img,M,(cols,rows))
+plt.imshow(dst)
+# Rotation
+M = cv2.getRotationMatrix2D((cols/2,rows/2),50,1)
+dst = cv2.warpAffine(img,M,(cols,rows))
+plt.imshow(dst,'gray')
+# Morphological Transformations of Images
+# Erosion
+img = cv2.imread('/content/morph_dilate.png',0)
+kernel = np.ones((3,3),np.uint8)
+plt.imshow(img,'gray')
+erosion = cv2.erode(img,kernel,iterations = 1)
+plt.imshow(erosion,'gray')
+# Dilation
+dilation = cv2.dilate(img,kernel,iterations = 1)
+plt.imshow(dilation,'gray')
+# Opening
+img=cv2.imread('/content/morph_dilate.png')[0:600,0:1000]
+plt.imshow(img)
+opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
+plt.imshow(opening)
+# Closing
+closing = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
+plt.imshow(closing)
