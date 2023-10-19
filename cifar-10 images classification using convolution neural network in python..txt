@@ -1,7 +1,3 @@
-Aim:
-To write a program to implement cifar-10 images classification using convolution neural
-network in python.
-Program:
 Classification:
 #Importing the libraries
 import numpy as np
@@ -83,10 +79,4 @@ thresholded=np.array(thresholded)
 print('\n Thresholded score: \n',thresholded)
 im_index = np.where(thresholded==1)
 print('Predicted image: \n', labels[im_index[0][0]])
-Output:
-#Model Evaluation
-#Visualization and evaluation
-Result:
-Thus, cifar-10 images classification was implemented using convolution neural network in
-python and executed successfully.
-Recurrent Neural Network
+
