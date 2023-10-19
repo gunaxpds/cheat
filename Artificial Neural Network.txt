@@ -1,8 +1,3 @@
-Artificial Neural Network
-Aim:
-To write a program to implement classification and regression using Artificial Neural
-Networks in python.
-Program:
 Classification:
 #Importing the libraries
 import numpy as np
@@ -90,18 +85,4 @@ pd.DataFrame(model.history.history).reset_index().plot('index',kind='line')
 pd.DataFrame(model.history.history)[['r2','val_r2']].reset_index().plot('index', kind='line')
 data = pd.DataFrame(hist.history)
 data.loc[data['r2'].idxmax()]
-Output:
-Classification:
-#Count plot of y
-#Confusion matrix
-array([[935, 4],
- [ 43, 0]])
-#Accuracy:
-0.9521384928716904
-Regression:
-#Model history
-#r2 vs val_r2
-#Max r2 details
-Result:
-Thus, classification and regression was implemented using Artificial Neural Networks in
-python and executed successfully.
+
