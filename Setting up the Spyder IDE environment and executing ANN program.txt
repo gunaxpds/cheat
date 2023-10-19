@@ -1,8 +1,3 @@
-Setting up the Spyder IDE environment and executing ANN program
-Aim:
-To write a program to implement classification and regression by Setting up the Spyder
-IDE environment and executing ANN program.
-Program:
 Classification:
 #Importing the necessary libraries
 import pandas as pd
@@ -58,15 +53,4 @@ history = model.fit(x,y,epochs=150, batch_size=5, validation_split=0.2)
 pd.DataFrame(model.history.history)[['r2','val_r2']].reset_index().plot('index', kind='line')
 data = pd.DataFrame(history.history)
 data.loc[data['r2'].idxmax()]
-OUTPUT:
-Classification:
-#Model Summary
-#Model history
-#Max accuracy details
-Regression:
-#Model Summary
-#Model history
-#Max r2 details
-Result:
-Thus, classification and regression was implemented successfully by using ANN in the
-Spyder IDE environment.
+
