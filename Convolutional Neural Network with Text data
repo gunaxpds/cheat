@@ -1,8 +1,3 @@
-Convolutional Neural Network with Text data
-Aim:
-To write a program to implement text data images classification using convolution neural
-network.
-Program:
 Classification:
 #Importing the libraries
 import numpy as np
@@ -65,12 +60,4 @@ print('Prediction score: \n', prediction[0])
 thresholded = (prediction>0.5)*1
 print('\n Thresholded score: \n',thresholded[0])
 print('Predicted digit: \n',np.where(thresholded==1)[1][0])
-Output:
-#Visualizing a data
-#Model Summary
-#Model Evaluation
-#comparing the original image with predicted value
-Result:
-Thus, text data image classification was implemented using convolution neural network
-and executed successfully.
-Convolutional Neural Network with Ciar-10 data
+
